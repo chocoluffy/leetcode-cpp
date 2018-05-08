@@ -22,6 +22,7 @@ ListNode *create_linkedlist(std::initializer_list<int> lst)
 
 int main()
 {
+    Solution s;
     ListNode *l1 = create_linkedlist({2,4,3});
     ListNode *l2 = create_linkedlist({5,6,4});
     ListNode *ret = s.addTwoNumbers(l1, l2);

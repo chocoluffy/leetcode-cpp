@@ -7,3 +7,8 @@ Question:
 
 
  */
+
+class Solution {
+public:
+
+};

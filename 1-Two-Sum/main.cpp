@@ -14,9 +14,10 @@ static auto x = [](){
 }();
 
 int main() {
+    Solution s;
     vector<int> input = {1, 2, 3, 8, 4, 9};
     int target = 10;
-    vector<int> result = twoSum_v2(input, target);
+    vector<int> result = s.twoSum_v2(input, target);
     cout << result[0] << " " << result[1];
     return 0;
 }
