@@ -1,3 +1,9 @@
+using namespace std;
+
+#include <string>
+#include <vector>
+#include <unordered_map>
+
 /**
 
 Given an array of integers, return indices of the two nums such that they add up to a specific target.
@@ -12,13 +18,6 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 
  */
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-
-using namespace std;
 
 /**
  * 10ms.
@@ -60,18 +59,6 @@ vector<int> twoSum_v2(vector<int> &nums, int target)
 	}
 }
 
-/**
- * 6ms. 
- */
-// how to get Leetcode tests to run approximately 10-40% faster, since they do a lot of print outs.
-static auto x = [](){
-    // turn off sync
-    std::ios::sync_with_stdio(false);
-    // untie in/out streams
-    cin.tie(NULL);
-    return 0;
-}();
-
 
 /**
  * 4ms.
@@ -101,12 +88,4 @@ vector<int> twoSum_v3(vector<int>& nums, int target) {
 		}
 	}
 	return indices;
-}
-
-int main() {
-    vector<int> input = {1, 2, 3, 8, 4, 9};
-    int target = 10;
-    vector<int> result = twoSum_v2(input, target);
-    cout << result[0] << " " << result[1];
-    return 0;
 }
