@@ -32,8 +32,11 @@ struct ListNode {
 
 class Solution {
 public:
+    /**
+     * 63 ms.
+     */
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode *res = NULL;
+        ListNode dummy(0), *tail = &dummy; // important line, init a dummy node, and a tail pointer.
         int curry = 0, sum = 0;
         while((l1 != NULL) && (l2 != NULL)) {
             sum = l1->val + l2->val + curry;
@@ -44,27 +47,52 @@ public:
                 curry = 0;
             }
             ListNode *new_node = new ListNode(sum);
-            new_node->next = res;
-            res = new_node;
+            tail->next = new_node;
+            tail = new_node;
+            l1 = l1->next;
+            l2 = l2->next;
         }
         if (l1 == NULL) {
             // l1 reaches the end.
             while(l2 != NULL) {
-                ListNode *new_node = new ListNode(l2->val);
-                new_node->next = res;
-                res = new_node;
+                sum = l2->val + curry;
+                if (sum > 9) {
+                    sum = sum % 10;
+                    curry = 1;
+                } else {
+                    curry = 0;
+                }
+                ListNode *new_node = new ListNode(sum);
+                tail->next = new_node;
+                tail = new_node;
                 l2 = l2->next;
             }
         }
         else if (l2 == NULL) {
             while(l1 != NULL) {
-                ListNode *new_node = new ListNode(l1->val);
-                new_node->next = res;   
-                res = new_node;  
+                sum = l1->val + curry;
+                if (sum > 9) {
+                    sum = sum % 10;
+                    curry = 1;
+                } else {
+                    curry = 0;
+                }
+                ListNode *new_node = new ListNode(sum);
+                tail->next = new_node;
+                tail = new_node; 
                 l1 = l1->next;
             }
         }
-        return res;
+        if (curry == 1) {
+            ListNode *new_node = new ListNode(1);
+            tail->next = new_node;
+            tail = new_node;
+            tail->next = NULL;
+        } else {
+            tail->next = NULL;
+        }
+
+        return dummy.next;
     }
 };
 

@@ -3,7 +3,7 @@
 
 // how to get Leetcode tests to run approximately 10-40% faster, since they do a
 // lot of print outs.
-static auto x = [](){
+static auto x = []() {
     // turn off sync
     std::ios::sync_with_stdio(false);
     // untie in/out streams
@@ -15,7 +15,7 @@ ListNode *create_linkedlist(std::initializer_list<int> lst)
 {
     auto iter = lst.begin();
     ListNode *head = lst.size() ? new ListNode(*iter++) : NULL;
-    for (ListNode *cur=head; iter != lst.end(); cur=cur->next)
+    for (ListNode *cur = head; iter != lst.end(); cur = cur->next)
         cur->next = new ListNode(*iter++);
     return head;
 }
@@ -23,8 +23,8 @@ ListNode *create_linkedlist(std::initializer_list<int> lst)
 int main()
 {
     Solution s;
-    ListNode *l1 = create_linkedlist({2,4,3});
-    ListNode *l2 = create_linkedlist({5,6,4});
+    ListNode *l1 = create_linkedlist({2, 4, 3});
+    ListNode *l2 = create_linkedlist({5, 6, 4});
     ListNode *ret = s.addTwoNumbers(l1, l2);
     for (ListNode *cur = ret; cur; cur = cur->next)
         cout << cur->val << "->";
@@ -32,4 +32,3 @@ int main()
 
     return 0;
 }
-
