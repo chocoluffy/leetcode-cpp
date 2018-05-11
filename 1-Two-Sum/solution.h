@@ -72,7 +72,7 @@ class Solution
 	}
 
 	/**
-	 * 4ms.
+	 * 4ms. 99.71%.
 	 * - std::sort is almost impossible to beat. even it is o(nlogn) in
 	 *   conception.
 	 */

@@ -1,9 +1,0 @@
-using namespace std;
-
-/**
-
-Question:
-
-
-
- */
