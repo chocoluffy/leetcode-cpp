@@ -14,6 +14,7 @@
 
 | # | Title | Solution | Speed & Percentile |
 |---| ----- | -------- | ---------- |
-|1| Two Sum | hashmap with early stop | 7ms, 98% |
-|2| Add Two Numbers in Linked List | dummy node for linked list | 41ms, 98% | 
-|3| Longest Substring Without Repeating Characters | bitmap in replace of <char, int> hashmap recording most recent position | 19ms, 98% |
+|1| Two Sum | hashmap with early stop. | 7ms, 98% |
+|2| Add Two Numbers in Linked List | dummy node for linked list. | 41ms, 98% | 
+|3| Longest Substring Without Repeating Characters | bitmap in replace of <char, int> hashmap recording most recent position. | 19ms, 98% |
+|4| Median of Two Sorted Arrays | do binary search on the shorter array between nums1 and nums2, compare the max\min number of left\right hand side. | 42 ms. 98% | 
