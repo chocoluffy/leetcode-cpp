@@ -48,7 +48,7 @@ class Solution
 	}
 
 	/**
-	 * 7 ms.
+	 * 7 ms. 98%
 	 */
 	vector<int> twoSum_v2(vector<int> &nums, int target)
 	{
