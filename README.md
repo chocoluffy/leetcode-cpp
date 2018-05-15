@@ -10,6 +10,10 @@
 
 - put ideas on README.md under each question. mark if its emphasis is on "Algorithm" or on "Implementation".
 
+## todo
+
+- summarize common modular operations and their time complexity, such as "longest common substring\subsequence".
+
 ## milestone
 
 | # | Title | Solution | Speed & Percentile |
