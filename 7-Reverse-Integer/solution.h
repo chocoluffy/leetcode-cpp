@@ -57,12 +57,14 @@ public:
         return res;
     }
 
+    /**
+     * 16 ms, 99.17%
+     */
     int reverse(int x) {
         int res = 0;
         int tmp;
         while (x) {
-            cout << x % 10 << endl;
-            tmp = res * 10 + (x % 10);
+            tmp = res * 10 + (x % 10); 
             if (res != tmp / 10) return 0; // check overflow.
             x /= 10;
             res = tmp;
