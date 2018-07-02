@@ -12,7 +12,11 @@
 
 ## todo
 
-- summarize common modular operations and their time complexity, such as "longest common substring\subsequence".
+- summarize common modular operations and helpful util functions, with their time complexity, such as "longest common substring\subsequence", "check if integer overflow".
+
+- also recording each solution's time & space complexity. 
+
+- check "Discussion" tab for smart tricks.
 
 ## milestone
 
