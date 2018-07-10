@@ -29,3 +29,4 @@
 |5. Longest Palindromic Substring | straightforward: for loop each element and expand at both side; best: only expand at right and jump through repeated elements as repeated one no matter how long it is will definitely be a valid palindrome string | 4ms, 100% |
 |6. ZigZag Conversion| create zigzag moving iterator that follows the pattern of the normal for loop iterator. Essentially, to have a direction indicator that will change the zigzag iterator's moving direction. | 21 ms, 98.44%|
 |7. Reverse Integer| check integer overflow before potential operations, trick is to check if applying reverse operation can yield original result. | 16 ms, 99.17%|
+|8. String to Integer (atoi)| convert each character to integer, check if overflow before any further operations. | 4ms, 100%|

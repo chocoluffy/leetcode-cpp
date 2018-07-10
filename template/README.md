@@ -1,3 +1,9 @@
 # 思路(C++)
 
-重点在
+重点
+
+## ideas
+
+## summary
+
+## reference
