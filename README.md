@@ -31,3 +31,18 @@
 |7. Reverse Integer | as title. |  check integer overflow before potential operations, trick is to check if applying reverse operation can yield original result. | 16 ms, 99.17%|
 |8. String to Integer (atoi) | as title, with some edge cases. | convert each character to integer, check if overflow before any further operations. | 4ms, 100%|
 |11. Container With Most Water | an array of integer, as vertical lines on coordinates, together with x-axis forms a container, find the one holds most water. | two pointer at two ends moving inwards. we can prove that moving the longer line inward is always worse than the current result. Thus we move the shorter line inward.  | 4ms, 100%|
+
+## summary
+
+### median
+
+A position that the number of elements at two sides is the same.
+
+Problems: NO.4
+
+
+### two pointer
+
+Essentially a way of searching. find the direction of keeping the sub-structure optimality. keep the optimality and explore\compare.
+
+Problems: NO.11
