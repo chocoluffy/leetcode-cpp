@@ -36,7 +36,6 @@
 
 ## algorithm summary
 
-
 ### median
 
 A position that the number of elements at two sides is the same.
@@ -53,7 +52,9 @@ Problems: NO.11
 
 ## data structure summary
 
-### trie
+### trie(prefix tree)
+
+Compared to hashmap.
 
 ```c++
 // trie node

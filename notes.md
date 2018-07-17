@@ -28,6 +28,44 @@ problem: as title.
 - binary search. an improvement on the vertical scanning. apply the binary search on the shortest string and do the vertical scanning to validate if it's LCP. time complexity is O(S * log(min string length)), space complexity is O(1).
 
 
+# 19 Remove Nth Node From End of List
+
+problem: remove the nth node from the linked list. 
+
+## ideas
+
+- two pointers. iterate the linked list in one pass. time complexity O(L), space complexity O(1).
+
+
+# 21 merge two sorted list
+
+recursion. time complexity: O(n + m). space complexity: O(n + m).
+
+# 22 generate parentheses
+
+problem: Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+## idea
+
+[me]
+- ues a stack to simulate the situation. the left parentheses push in the stack, while the right parentheses pop out the stack.
+- how to decide if a combination is well-formed?
+when the right parentheses pushes in the stack when the stack is empty, then such combination is not well-formed, such as ())().
+
+```
+def print_parenthese(number of pair = n, string s):
+    if n == 0:
+        results.append(s)
+    else:
+        print_parenthese(n - 1, s.append('('))
+        if well_formed(s.append(')')):
+            print_parenthese(n - 1, s.append(')'))
+
+results = []
+print_parenthese(3, '')
+```
+
+
 # 866 prime palindrome
 
 problem: find a prime number that is also a palindromd over N.
