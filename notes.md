@@ -1,4 +1,25 @@
+# 1 two sum
+
+- 最快的算法里对std::sort的使用。
+
+虽然理论上sort是nlogn，但是在实用中sort可以在某些情况下提高速度。尤其当c++的library function对其添加的优化。
+
+# 2 add two numbers
+
+- 想清楚什么时候需要引入dummy node。
+
+常见的原因是为了更简便地处理while loop里面的edge case，比如这里的第一个node的初始化。我们创建新node是依赖while loop的逻辑的，如果为NULL，在loop使用node->next会seg fault。所以通过创建dummy node使得可以直接在loop里使用node->next。然后最后用dummy->next返回整个链的head。
+
+# 3 longest substring without repeating characters
+
+- map<char, int>
+
+优化这个结构的时候，可以考虑bitmap的使用。类似bucketsort的原理。如果是字符则是默认256长度的bitmap，然后对应的位置放置其value。
+
+
 # 14 longest common prefix
+
+problem: as title.
 
 ## ideas
 
@@ -6,12 +27,10 @@
 - divide and conquer. because LCP satisfies the associative property, that LCP(1,..., n) = LCP(LCP(1,..., n/2), LCP(n/2+1,..., n)). as like in finding min or max. time complexity is O(S), space complexity is O(mlogn), n is the number of string, m is the average length, since divide and conquer requires to store intermediate results.
 - binary search. an improvement on the vertical scanning. apply the binary search on the shortest string and do the vertical scanning to validate if it's LCP. time complexity is O(S * log(min string length)), space complexity is O(1).
 
-## summary 
-
 
 # 866 prime palindrome
 
-find a prime number that is also a palindromd over N.
+problem: find a prime number that is also a palindromd over N.
 
 ## ideas
 

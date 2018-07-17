@@ -34,7 +34,7 @@
 |8. String to Integer (atoi) | as title, with some edge cases. | convert each character to integer, check if overflow before any further operations. | 4ms, 100%|
 |11. Container With Most Water | an array of integer, as vertical lines on coordinates, together with x-axis forms a container, find the one holds most water. | two pointer at two ends moving inwards. we can prove that moving the longer line inward is always worse than the current result. Thus we move the shorter line inward.  | 4ms, 100%|
 
-## summary
+## algorithm summary
 
 
 ### median
@@ -49,6 +49,9 @@ Problems: NO.4
 Essentially a way of searching. find the direction of keeping the sub-structure optimality. keep the optimality and explore\compare.
 
 Problems: NO.11
+
+
+## data structure summary
 
 ### trie
 
