@@ -53,17 +53,53 @@ problem: Given n pairs of parentheses, write a function to generate all combinat
 when the right parentheses pushes in the stack when the stack is empty, then such combination is not well-formed, such as ())().
 
 ```
-def print_parenthese(number of pair = n, string s):
+def print_parenthese(number of pair = n, string s, stack level sl):
     if n == 0:
         results.append(s)
     else:
-        print_parenthese(n - 1, s.append('('))
-        if well_formed(s.append(')')):
-            print_parenthese(n - 1, s.append(')'))
+        print_parenthese(n - 1, s.append('('), sl + 1)
+        if sl > 0: // only continue when adding right parentheses will result in well-formed parentheses.
+            print_parenthese(n - 1, s.append(')'), sl - 1)
 
 results = []
-print_parenthese(3, '')
+print_parenthese(3, '', 0)
 ```
+
+# 23 merge k sorted list
+
+problem: as title.
+
+priority queue. a min heap. assuming there are N elements in total, time complexity: O(k + Nlogk), it takes k to construct a heap, then each time take logk to rearrange the heap.
+
+# 26 remove duplicates from sorted array
+
+problem: given a sorted array, remove the duplicates *in-place*, and return the new length.
+
+two pointer. left pointer points at unique element, and right pointer iterates the array normally, when the its current value is different with its prev value, record the value using left pointer. time complexity O(n), space complexity O(1).
+
+```c++
+int remove_duplicates(int[] array) {
+    int left = 0, right = 0;
+    int prev;
+    for(; right < array.length();) {
+        if (prev && array[right] == prev) {
+            right++;
+        }
+        if (!prev || array[right] != prev) {
+            array[left] = array[right];
+            left++;
+            right++;
+            prev = array[right];
+        }
+    }
+
+}
+```
+
+# 27 remove element
+
+problem: Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+
 
 
 # 866 prime palindrome

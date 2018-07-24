@@ -101,3 +101,7 @@ void insert(struct TrieNode *root, string key)
 > Note the coding way in method `insert()`, we use a new variable `struct TrieNode *pCrawl` to iterate through the `key`, so that it doesn't change the position of `*root`.
 
 - https://www.geeksforgeeks.org/trie-insert-and-search/
+
+### priority queue
+
+- [Why is Binary Heap Preferred over BST for Priority Queue? - GeeksforGeeks](https://www.geeksforgeeks.org/why-is-binary-heap-preferred-over-bst-for-priority-queue/)
