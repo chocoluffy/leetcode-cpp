@@ -100,6 +100,51 @@ int remove_duplicates(int[] array) {
 
 problem: Given an array nums and a value val, remove all instances of that value in-place and return the new length.
 
+- note that here the array is not sorted. still apply two pointer method that having left pointer stop at the first occurence of the target value element, and right pointer keep iterating till reach the first different value element than the target value. then do swap. ends till the right pointer reachs the end. return the new length.
+
+```c++
+// this one is the keep-order one.
+int remove_element(int[] array, int target) {
+    int left = 0, right = 0;
+    for(; right < array.length();) {
+        while(array[left] != target) {
+            left++;
+            if(left >= right) right = left;
+        }
+        while(array[right] == target) right++;
+        array[left] = array[right];
+        array[right] = target;
+    }
+    return left;
+}
+```
+
+- OR: using two pointer and the fact that the order can be changed. One start from the left, finding the first target value, the other starts from the end, finding the first non-target element.
+
+- OR: using heuristics, by deciding whether the target value is major. If target value is rare, find it and move it to the end. If the others is rare, find it and move it to the start. 
+
+# 31 next permutation
+
+problem: re-arrange the numbers into the next lexicographically greater permutation.
+
+idea: 
+
+- [mine] use a pointer scanning from the end, keeping the min element, it iterates forward to the find any elements smaller than it. If it cannot find such smaller element, then it will be impossible and return the smallest lexicographical order. If it can find such element, then swap it, and re-arrange the rest using ascending order. 
+> construct a min-heap can help. the rest with ascending order can be viewed as a heapsort. time complexity O(nlogn).
+
+- [book] use a heuristic that the while scanning from the end till finding the first descending element to swap, the ascending order is maintianed. thus only requres two pass to solve the problem. The first pass find the first descending element from the end, the second pass will insert that element into the right halve. time complexity O(n).
+
+# 32 longest valid parentheses
+
+problem: return the length of the longest vaild parentheses substring.
+
+idea:
+
+- [mine] similar idea with checking if a string is valid palindrome parenthese string using a queue, and use an extra variable to keep track of the current longest length. If reach non-valid form, then the tracker go clear to 0. time complexity: O(n) because a queue can build up at worst n, space complexity: O(n). 
+
+- [book] use two pointer to replace the queue data structure in my idea, since we are not curious the exact positions of those well-formed paratheses in the string, we only care about the longest length. thus, use one "left" and "right" pointer to record the total "(", ")" it meets during iteration. if they are equal, record the length and update the max len, if right pointer is greater than left pointer, then both clear to 0. Then repeat the procedure by starting from the end, in case of the situation that left pointer is always greater than the right pointer value.
+> smart. 
+> It also suggest that, data structure always means some trade-off, you can use simpler data structure to do the task by trading some features. like in this question, we use two pointer to replace queue, since we only care about the length of the parathese.
 
 
 # 866 prime palindrome
