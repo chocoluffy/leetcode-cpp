@@ -143,9 +143,24 @@ idea:
 - [mine] similar idea with checking if a string is valid palindrome parenthese string using a queue, and use an extra variable to keep track of the current longest length. If reach non-valid form, then the tracker go clear to 0. time complexity: O(n) because a queue can build up at worst n, space complexity: O(n). 
 
 - [book] use two pointer to replace the queue data structure in my idea, since we are not curious the exact positions of those well-formed paratheses in the string, we only care about the longest length. thus, use one "left" and "right" pointer to record the total "(", ")" it meets during iteration. if they are equal, record the length and update the max len, if right pointer is greater than left pointer, then both clear to 0. Then repeat the procedure by starting from the end, in case of the situation that left pointer is always greater than the right pointer value.
-> smart. 
-> It also suggest that, data structure always means some trade-off, you can use simpler data structure to do the task by trading some features. like in this question, we use two pointer to replace queue, since we only care about the length of the parathese.
+> 🌶️ It also suggest that, data structure always means some trade-off, you can use simpler data structure to do the task by trading some features. like in this question, we use two pointer to replace queue, since we only care about the length of the parathese.
 
+# 42 trapping rain water
+
+problem: Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+idea:
+
+- [mine] use a modified stack structure + a extra min variable. push operation stays the same, while pop is different that for any new element aj, pop out all elements ai in the current queue that ai <= aj. and the trapped water: 
+$water total = \sigma{ai in the queue}{i}(aj - ai) * (j - i - 1)$, time complexity: O(n), space complexity: O(n). because each element will be touched at most two times(insertion and deletion)。
+
+- [book] brute force: 对于数组里的每一个元素向两边展开，找到两边里最高的值最高的那个元素，那么这个位置可以储存的水是：min(max_left, max_right) - ai. time complexity: O(n^2), space complexity: O(1).
+
+- [book] dp: 上述这个找到两边里最高的值的信息可以被后续利用。我们可以利用两个pass找到对于每个元素的max_left[i]和max_right[i]，那么这个位置可以储存的水是： min(max_left[i], max_right[i]) - ai. time complexity: O(n), space complexity: O(n).
+
+> 🌶️ 关于DP的一种使用场景：遍历数组里的每一个元素时，从中间往两边展开。如果用这种brute force的方法可以解决问题，那么这种做法可以被优化成Dynamic Programming的方式。
+
+> 🌶️ 每次使用stack以及queue的时候，都可以尝试的优化为two pointer的方式。将space complexity从O(n)降为O(1)。
 
 # 866 prime palindrome
 

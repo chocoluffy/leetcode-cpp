@@ -49,6 +49,9 @@ Essentially a way of searching. find the direction of keeping the sub-structure 
 
 Problems: NO.11
 
+### first descending element
+
+useful in finding the next lexicographically greater permutation. 
 
 ## data structure summary
 
