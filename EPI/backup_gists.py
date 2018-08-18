@@ -10,10 +10,12 @@ user = sys.argv[1]
 
 r = requests.get('https://api.github.com/users/{0}/gists'.format(user))
 
+shutil.rmtree('./notes')
+os.makedirs('./notes')
+os.chdir('./notes')
 for i in r.json():
 	description = i['description']
 	title = description.split(']')[0][1:].replace(' ', '-')
-	if not os.path.isdir('./{0}'.format(title)):
-		call(['git', 'clone', i['git_pull_url']])
-		os.rename('./{0}'.format(i['id']), './{0}'.format(title))
-		shutil.rmtree('./{0}/.git'.format(title))
+	call(['git', 'clone', i['git_pull_url']])
+	os.rename('./{0}'.format(i['id']), './{0}'.format(title))
+	shutil.rmtree('./{0}/.git'.format(title))
