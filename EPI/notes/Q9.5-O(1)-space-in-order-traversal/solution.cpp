@@ -1,3 +1,6 @@
+// 很好的参考，对于prev, curr和next的使用。特别是在iterative的方法里。
+// trick: 以及很多时候corner case都是根据normal case的nullptr的情况来定义的。
+
 struct b_tree {
   int data;
   b_tree* left;
