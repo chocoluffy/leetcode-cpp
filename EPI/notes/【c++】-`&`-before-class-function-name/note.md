@@ -1,5 +1,7 @@
 基本上就是说不希望caller改变return的值，因此返回一个reference。
 
+例如： `const unordered_set<string> & dict` 
+
 ---
 
 > https://stackoverflow.com/questions/8610350/implications-of-using-an-ampersand-before-a-function-name-in-c
