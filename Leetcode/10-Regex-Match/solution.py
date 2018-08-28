@@ -22,6 +22,7 @@ class Solution(object):
         dp[-1][-1] = True
         for i in range(len(text), -1, -1):
             for j in range(len(pattern) - 1, -1, -1):
+                print i, j
                 first_match = i < len(text) and pattern[j] in {text[i], '.'}
                 if j+1 < len(pattern) and pattern[j+1] == '*':
                     dp[i][j] = dp[i][j+2] or first_match and dp[i+1][j]
