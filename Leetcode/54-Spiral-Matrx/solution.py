@@ -12,12 +12,16 @@ class Solution(object):
         c = 0
         res = [matrix[r][c]]
         visited[r][c] = True
-        for _ in range(col_len * row_len):
+        i = 0
+        while i < col_len * row_len - 1:
+            # print i
+            i = i + 1
             next_r = r + directions[direction_ptr][0]
             next_c = c + directions[direction_ptr][1]
             # print next_r, next_c
             if next_r < 0 or next_c < 0 or next_c >= row_len or next_r >= col_len or visited[next_r][next_c]: #  outside
                 direction_ptr = (direction_ptr + 1) % 4
+                i = i - 1
             else: # inside
                 visited[next_r][next_c] = True
                 res.append(matrix[next_r][next_c])
