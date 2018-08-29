@@ -16,7 +16,7 @@ mine:
 
 class Solution(object):
 
-    def isMatch(self, text, pattern):
+    def isMatch_official(self, text, pattern):
         dp = [[False] * (len(pattern) + 1) for _ in range(len(text) + 1)]
 
         dp[-1][-1] = True
@@ -52,5 +52,41 @@ class Solution(object):
         pprint.pprint(dp)
         return dp[len(s)][len(p)]
 
-# print Solution().isMatch('aaba', 'a.ba*') print Solution().isMatch('ab', '.*')
-print Solution().isMatch('aa', 'aaa')
+    # recursion version
+    def isMatch_mine(self, s, p):
+        # when there is no '*'
+        if len(s) > 0 and len(p) == 0:
+            return False
+        elif len(s) == 0 and len(p) == 0:
+            return True
+        first_match = len(s) > 0 and (s[0] == p[0] or p[0] == '.')
+
+        if len(p) > 1 and p[1] == '*':
+            return self.isMatch_mine(s, p[2:]) or (first_match and self.isMatch_mine(s[1:], p))
+        else:
+            if first_match:
+                return self.isMatch_mine(s[1:], p[1:])
+            else:
+                return False
+
+    # dp version
+    def isMatch(self, s, p):
+        table = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
+        table[-1][-1] = True
+        for i in range(len(s), -1, -1):
+            for j in range(len(p) - 1, -1, -1):
+                first_match = i < len(s) and (s[i] == p[j] or p[j] == '.')
+                if j+1 < len(p) and p[j+1] == '*':
+                    table[i][j] = (first_match and table[i+1][j]
+                                   ) or table[i][j+2]
+                else:
+                    table[i][j] = first_match and table[i+1][j+1]
+        pprint.pprint(table)
+        return table[0][0]
+
+
+# print Solution().isMatch('aaba', 'a.ba*') 
+# print Solution().isMatch('ab', '.*')
+# print Solution().isMatch('aa', 'aaa')
+
+print Solution().isMatch('mississippi', 'mis*is*p*.')
