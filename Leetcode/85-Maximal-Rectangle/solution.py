@@ -10,8 +10,13 @@
 # challenge:
 - inner list being updated at the same time. but not individually! mind such
   reference error.
+- handle the base case in the matrix form, especially the case:
+    - empty matrix.
+    - single row matrix.
 """
 import pprint
+
+
 class Solution(object):
     def maximalRectangle(self, matrix):
         """
@@ -19,7 +24,8 @@ class Solution(object):
         """
         if not matrix:
             return 0
-        table = [[(0, 0)] * (len(matrix[0]) + 1) for _ in range(len(matrix) + 1)]
+        table = [[(0, 0)] * (len(matrix[0]) + 1)
+                 for _ in range(len(matrix) + 1)]
         # update right direction count.
         for i in range(len(matrix) - 1, -1, -1):
             for j in range(len(matrix[0]) - 1, -1, -1):
@@ -29,7 +35,7 @@ class Solution(object):
                 else:
                     this_lst[1] = 0
                 table[i][j] = tuple(this_lst)
-        
+
         # update bottom direction count.
         for i in range(len(matrix[0]) - 1, -1, -1):
             for j in range(len(matrix) - 1, -1, -1):
@@ -39,21 +45,28 @@ class Solution(object):
                 else:
                     this_lst[0] = 0
                 table[j][i] = tuple(this_lst)
-        
+
         max_area = 0
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
-                validator = (table[i][j+1][0], table[i+1][j][1])
-                if table[i][j][0] <= validator[0] and table[i][j][1] <= validator[1]:
+                x = float('inf') if j+1 == len(matrix[0]) else table[i][j+1][0]
+                y = float('inf') if i+1 == len(matrix) else table[i+1][j][1]
+                validator = (x, y)
+                # print i, j, validator
+                if table[i][j][0] == 1 or table[i][j][1] == 1 or (table[i][j][0] <= validator[0] and table[i][j][1] <= validator[1]):
                     current_area = table[i][j][0] * table[i][j][1]
                     max_area = current_area if current_area > max_area else max_area
-        # pprint.pprint(table)
+        pprint.pprint(table)
         return max_area
 
-this_matrix = [
-  ["1","0","1","0","0"],
-  ["1","0","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","0","0","1","0"]
-]
+# this_matrix = [["1","0","1","0","0"], ["1","0","1","1","1"],
+#   ["1","1","1","1","1"], ["1","0","0","1","0"]
+# ]
+
+
+# this_matrix = [["1", "1"]]
+# this_matrix = [["1", "0"], ["1", "0"]]
+this_matrix = [["1","1","1","1","1","1","1","1"],["1","1","1","1","1","1","1","0"],["1","1","1","1","1","1","1","0"],["1","1","1","1","1","0","0","0"],["0","1","1","1","1","0","0","0"]]
+pprint.pprint(this_matrix)
+
 print Solution().maximalRectangle(this_matrix)
