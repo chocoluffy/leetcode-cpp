@@ -18,6 +18,25 @@ import pprint
 
 
 class Solution(object):
+
+    def maximalRectangle_better(self, matrix):
+        if not matrix or not matrix[0]:
+            return 0
+        heights = [0] * (len(matrix[0])+1)
+        max_area = 0
+        for row in matrix:
+            for i in xrange(len(row)): # update height
+                heights[i] = heights[i] + 1 if row[i] == '1' else 0
+            stack = [-1]
+            for i in xrange(len(matrix[0])+1):
+                while heights[i] < height[stack[-1]]:
+                    height = heights[stack.pop()]
+                    l_index = stack[-1]
+                    max_area = max(max_area, height * (i - 1 - l_index))
+                stack.append(i)
+        return max_area
+
+
     def maximalRectangle(self, matrix):
         """
         :type matrix: List[List[str]] :rtype: int

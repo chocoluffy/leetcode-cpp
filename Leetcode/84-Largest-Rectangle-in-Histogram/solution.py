@@ -33,7 +33,7 @@ class Solution(object):
         max_area = 0
         heights.append(0)
         for i in range(len(heights)):
-            while len(stack) > 0 and heights[i] < heights[stack[-1]]:
+            while heights[i] < heights[stack[-1]]:
                 curr = stack.pop()
                 l_index = stack[-1]
                 max_area = max(max_area, heights[curr] * (i - l_index -1))
