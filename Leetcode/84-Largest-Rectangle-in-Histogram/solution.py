@@ -29,18 +29,16 @@ class Solution(object):
         :type heights: List[int]
         :rtype: int
         """
-        stack = [(-1, -1)] # (value, l_index) tuple.
+        stack = [-1] # store index in stack.
         max_area = 0
         heights.append(0)
         for i in range(len(heights)):
-            l_index = i
-            while heights[i] < stack[-1][0]:
+            while len(stack) > 0 and heights[i] < heights[stack[-1]]:
                 curr = stack.pop()
-                l_index = curr[1]
-                res.append([curr[0], (l_index, i)]) # [value, [left, right)]
-                max_area = max(max_area, curr[0] * (i - l_index))
-            stack.append((heights[i], l_index))
+                l_index = stack[-1]
+                max_area = max(max_area, heights[curr] * (i - l_index -1))
+            stack.append(i)
         return max_area
 
-# print Solution().largestRectangleArea([2,1,5,6,2,3])
-print Solution().largestRectangleArea([1])
+print Solution().largestRectangleArea_better([2,1,5,6,2,3])
+# print Solution().largestRectangleArea_better([2, 1, 2])
