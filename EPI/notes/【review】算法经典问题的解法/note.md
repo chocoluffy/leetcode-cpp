@@ -45,3 +45,4 @@ Q: given an array of element, return another array of same size, where each elem
   - 因为heap从底部插入数据，而bst是从顶部插入数据。所以heap的insert的amortized time complexity是O(1)因为最底层占了一半以上的数据。
   
 - function stack也算作time complexity里。
+- BST很多时候可以和divide and conquer\DP联系在一起。因为本质上每一个root都可以将range分为两个独立的range（subproblem）。结合具体问题进一步完整recursion或者dp table。
