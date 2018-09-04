@@ -52,6 +52,7 @@ class Solution(object):
             return 0
         return maxCoins_helper(nums, 0, len(nums)-1)
 
+    # better solution. think backward by finding which ballon burst last.
     def maxCoins_v3(self, nums):
         new_nums = [1] + nums + [1]
         n = len(new_nums)
