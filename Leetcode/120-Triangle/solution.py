@@ -34,5 +34,12 @@ class Solution(object):
     # Space complexity can be improved to linear, since the subproblems only
     # depends on the prev level.
     def minimumTotal_v2(self, triangle):
-        n = 
+        n = len(triangle)
+        m = len(triangle[-1])
+        dp = [0] * (m+1)
+        for i in range(n-1, -1, -1):
+            for j in range(0, m-(n-1-i)):
+                dp[j] = min(dp[j], dp[j+1]) + triangle[i][j]
+        return dp[0]
+        
     
