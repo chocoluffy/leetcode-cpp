@@ -1,3 +1,13 @@
+## sliding window
+
+- two pointer sliding window
+
+右指针先expand直到满足条件，然后左指针move直到break条件，常适用于找到最小区间。
+
+- mono deque(double ended queue)
+
+pop直到结构内元素单调然后push。
+
 ## find majority element
 
 Q: there is one majority element in the array, it appear more than n/2 times. 

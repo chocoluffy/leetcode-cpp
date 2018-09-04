@@ -16,3 +16,6 @@ yield可以和for loop搭配使用，尤其是当需要返回特别大的占用�
 
 ## logic
 greedy evalution, thus `False and Error(list index out of range)` will still give `False`, but no error.
+
+## power
+用`x**2`来表示平方。而不是`x^2`。
