@@ -1,6 +1,8 @@
 // [1] know what a normal DFS is when traversing in matrix;
 // [2] know how to extend from a normal visited table(a dp table) to hold value for more complex usage. such as holding the maximum value seen so far.
 
+// * [3] another creative solution is to convert the question into finding, the length of longest topological order.
+
 // c++ version:
 struct entry {
   int x;
