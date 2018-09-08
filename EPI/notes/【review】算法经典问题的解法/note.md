@@ -1,4 +1,15 @@
-## sliding window
+# Data Structure
+
+### stack
+
+单调栈的使用：
+- 找到每个元素下一个更大的元素。
+
+### palindrome
+
+很多时候和prefix，suffix联系在一起。
+
+### sliding window
 
 - two pointer sliding window
 
@@ -8,7 +19,15 @@
 
 pop直到结构内元素单调然后push。
 
-## find majority element
+---
+
+# Algorithm
+
+### KMP string pattern matching
+
+本质是找：针对一个string的最长prefix\suffix匹配。基于这个table，在pattern match的时候，当遇到部分匹配的情况时，我们可以利用match这部分的longest prefix\suffix match直接从suffix的位置继续开始匹配，而省略了其中的一部分匹配过程。
+
+### find majority element
 
 Q: there is one majority element in the array, it appear more than n/2 times. 
 
@@ -20,18 +39,21 @@ insert the node into binary search tree, if such leaf already exists, increase t
 - moore voting(find_candidate + validate)
 validate的时间是O(n)。使用类似semaphore的想法。利用一个counter，如果相邻的连续是相同的就counter++，如果不同就清零更换一个character。
 
-## product puzzle without division in O(n)
+### product puzzle without division in O(n)
 
 Q: given an array of element, return another array of same size, where each element is the product of all element except for itself. you cannot use division. do this in O(n) time.
 
 - 构建左右累计数列。
 一个很实用的技巧，当这个位置和其他所有位置的信息相关的时候，或者，如果naive的做法是基于每个点从中往外扩开的情况的话，可以考虑这个方向。也即，从左一次做累计操作，O(n)，同理从右也一遍。在本题中则是构建累乘数列，`L[i] = L[i- 1] * A[i - 1]`, `R[i - 1] = R[i] * A[i], i = n - 1, i--`. 则`prod = L[i] * R[i]`
 
-## subarray\substring matching by hashing
+### subarray\substring matching by hashing
+
 应用比如 plagiarism。
+构建一种算法，使得计算hash value的阶段可以累加，也就是说对于一串字符串来说，不需要每次在插入字符或者删除字符的时候对所有字符编码O(n)，而只需要O(1)的复杂度来更新hash value：
+找到一个base，`next = (prev * base + new_char) % large_prime`，类比构建正数分位。
 
 
-## general tricks
+### general tricks
 
 - 大数相加、相乘时注意overflow的问题，在cpp和java里会出现，在python里不会。
 

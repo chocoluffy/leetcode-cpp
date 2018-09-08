@@ -12,6 +12,7 @@ but when we iterate the table, and refer to the original string, we need to redu
 
 - 动态式
 
-每个当前状态和所有上一层级的子问题都相关。
+每个当前状态和所有上一层级的子问题都相关。比如Ladder Climbing。
 
-- 
+- 2维数组，代表两种不同的限制
+构建D[i][j]， j可以表示两者之差，如果最后希望拿到的是相等的值，即设j=0。例子，今日头条面经题目，个人得分和团体得分。以及典型的背包问题，第一个i表示item，第二个j表示重量限制。
