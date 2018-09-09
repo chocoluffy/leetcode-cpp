@@ -25,7 +25,7 @@ for i, j in pairs:
 
 def dfs(g, x, y, visited):
     for k in range(N):
-        if g[y][k] == 1 and visited[k] == False:
+        if g[y][k] == 1 and g[x][k] == 0 and visited[k] == False:
             g[x][k] = 1
             visited[k] = True
             dfs(g, x, k, visited)
