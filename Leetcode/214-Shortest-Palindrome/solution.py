@@ -39,4 +39,18 @@ class Solution(object):
         res = pad[::-1] + s
         return res
             
+
+    # better version, inspired from KMP pattern matching algorithm, find out the
+    # longest prefix\suffix match for a new string s#rev(s) in O(n).
+    def shortestPalindrome_v2(self, s):
+        new_s = s + "#" + s[::-1]
+        n = len(new_s)
+        table = [0] * n # record the longest prefix\suffix match
+        p_last = 0
+        for i in range(1, n):
+            if new_s[p_last] == new_s[i]: # find new match between prefix and suffix.
+                table[p_last] = p_last
+                p_last += 1
+            else:
+                
         
