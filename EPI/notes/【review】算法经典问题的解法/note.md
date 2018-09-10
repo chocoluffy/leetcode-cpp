@@ -57,6 +57,46 @@ while j < len(s): # use j to iterate throught the array.
 ### KMP string pattern matching
 
 本质是找：针对一个string的最长prefix\suffix匹配。基于这个table，在pattern match的时候，当遇到部分匹配的情况时，我们可以利用match这部分的longest prefix\suffix match直接从suffix的位置继续开始匹配，而省略了其中的一部分匹配过程。
+```python
+# construct the lookup table, f(i) records that up till position i, the length of the longest prefix\suffix match.
+f(0) = 0
+for(i = 1; i < n; i++)
+{
+    t = f(i-1)
+    while(t > 0 && b[i] != b[t])
+        t = f(t-1)
+    if(b[i] == b[t]){
+        ++t
+    f(i) = t
+}
+```
+
+### Graph
+
+关于图像遍历的算法常见技巧：
+- 直接修改graph二维数组来做visited的作用，而不需要新建一个等大小的数组增加内存开销，尤其对于recursion影响大。
+
+### BFS
+算法重心在于level的累加，是当queue中来自上一层的所有node都pop出来之后，level += 1。
+```python
+from collections import deque
+queue = []
+queue.append(source)
+level = 0
+directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+while len(queue) > 0:
+	level += 1
+    size = len(queue)
+    while size > 0:
+    	size -= 1
+        curr = queue.popleft()
+        for dx, dy in directions:
+        	newx, newy = curr[0] + dx, curr[1] + dy
+            if new_position_valid():
+            	grid[newx][newy] = 0 # mark visited.
+                check_if_meet_final_target() # return level-related number.
+                queue.append(newx, newy)
+```
 
 ### find majority element
 
