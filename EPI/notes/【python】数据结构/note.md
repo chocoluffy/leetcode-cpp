@@ -14,7 +14,17 @@ s = list(set(a)) # 转换为list
 a = sorted(a) # 从小到大
 a = sorted(a, reverse = True) # 从大到小
 a = sorted(a, key = a[1], reverse = True) # 以a[1]作为排序的根据
-# 当a为str array时，默认排序为alphabetical order。
+# 当a为str array时，默认排序为alphabetical order从小到大。
+
+#当需要根据多个属性来排序的时候，首先按照第一个属性排序，当第一个属性持平的时候根据第二个属性来排序：
+# 例一
+a = [('Al', 2),('Bill', 1),('Carol', 2), ('Abel', 3), ('Zeke', 2), ('Chris', 1)] 
+b = sorted(a, key = lambda x: (-x[1], x[0])) # 先根据数据从大到小，打平的时候根据字母顺序。
+
+# 例二
+d = ["ale","apple","monkey","plea", "alea"]
+sorted(d, key = lambda x: (-len(x), x)) # 先按长度从大到小，打平的时候按照字母顺序。
+['monkey', 'apple', 'alea', 'plea', 'ale']
 ```
 
 ## in-place operations

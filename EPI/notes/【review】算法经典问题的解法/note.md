@@ -23,6 +23,37 @@ pop直到结构内元素单调然后push。
 
 # Algorithm
 
+### partition algorithm(in quicksort)
+保持数组部分有序的方式，找到一个pivot，根据这个pivot对这个数组重新arrange之后保证pivot左边数字都比它小，而右边数字都比它大。T：O(n), S: O(1)。
+```python
+# two pointers, i and j, such that every elements at left of i are smaller than pivot, which gives that the elements between i and j are larger than the pivot. and finally swap the pivot with the index i position to yield the correct partition.
+i = 0
+j = 0
+while j < len(s): # use j to iterate throught the array.
+	if s[j] < pivot: # swap with index i, 
+    	swap(i, j)
+        i++
+        j++
+    elif s[j] > pivot:
+    	j++
+swap(i, pivot_index)
+
+# Extension: 当存在和pivot值相同的元素的时候，如果需要将其置于中间，需要three pointers，多引入一个pointer k指向数组的最后，然后每当有元素大于pivot的时候，和k位置交换元素，同样利用j来遍历数组，保证小于i位置的都比pivot小，大于k位置的都比pivot大。
+i = 0
+j = 0
+k = len(s) - 1
+while j < len(s): # use j to iterate throught the array.
+	if s[j] < pivot: # swap with index i, 
+    	swap(i, j)
+        i += 1
+        j += 1
+    elif s[j] > pivot:
+    	swap(j, k)
+        k -= 1
+	else:
+    	j += 1
+```
+
 ### KMP string pattern matching
 
 本质是找：针对一个string的最长prefix\suffix匹配。基于这个table，在pattern match的时候，当遇到部分匹配的情况时，我们可以利用match这部分的longest prefix\suffix match直接从suffix的位置继续开始匹配，而省略了其中的一部分匹配过程。
