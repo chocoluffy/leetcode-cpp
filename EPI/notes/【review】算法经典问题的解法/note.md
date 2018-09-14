@@ -9,6 +9,47 @@
 
 很多时候和prefix，suffix联系在一起。
 
+### trie
+
+和hash相比在存储string的时候的一些好处：
+- 找到所有具有common prefix的keys
+- 以字典顺序遍历所有string的时候
+- 当hash不断增大的时候，会出现很多hash collitions，对于trie来说当大部分的字符串具有类似prefix的时候，效率比较高。
+```python
+# trie的具体python实现.
+class Trie(object):
+    def __init__(self):
+        self.end = False # 需要这个属性来mark一下，是否到这个node为止组成的这个word存在！！比如insert('apple')之后，'app'最后'p'这个点的end应该是False的。
+        self.c = {} # 利用recursion的想法，每个当前的children node都为一个Trie tree. key: char, val: new Trie().
+
+    def insert(self, word):
+        node = self
+        for w in word:
+            if w not in node.c:
+                node.c[w] = Trie()
+            node = node.c[w]
+        node.end = True
+            
+    def prefixnode(self,word):
+        node = self
+        for w in word:
+            if w not in node.c:
+                return None
+            node = node.c[w]
+        return node
+    
+    def search(self, word):
+        node = self.prefixnode(word)
+        if not node:
+            return False
+        else:
+            return True if node.end else False
+            
+    def startsWith(self, prefix):
+        node = self.prefixnode(prefix)       
+        return bool(node)
+```
+
 ### sliding window
 
 - two pointer sliding window

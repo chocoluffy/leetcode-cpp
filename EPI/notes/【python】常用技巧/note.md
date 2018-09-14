@@ -25,6 +25,14 @@ for k, v in d.iteritems():
 	print k, v
 ```
 
+### 使用defaultdict()
+```python
+from collections import defaultdict
+a = defaultdict(int)
+a = defaultdict(list)
+a = defaltdict(lambda: 3) # set default value.
+```
+
 # Array
 ### enumerate: 重组array获得元素的index
 `s = {s: i for i, s in enumerate(str_lst)}`

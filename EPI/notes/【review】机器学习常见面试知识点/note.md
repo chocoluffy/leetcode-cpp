@@ -14,7 +14,7 @@ The batching allows both the efficiency of not having all training data in memor
 
 # LDA模型（latent dirichlet /di ri ke late/ allocation）
 
-### *LDA假定每个新文本是这么生成的*
+### LDA假定每个新文本是这么生成的
 在生成一篇document的时候，两个assumptions:【1】document有一个基于话题的概率分布,【2】每个话题有基于单词的概率分布
 首先决定总共单词的数量N，
 然后选择一个话题的分布，这个是一个prior先验的概率，比如1/3食物以及2/3动物，pick a topic based on document's multinomial distribution.
@@ -22,7 +22,7 @@ The batching allows both the efficiency of not having all training data in memor
 
 > LDA是一个Bag of Words的模型，也就是其实单词出现的顺序以及语法相对位置的模型没有影响。
 
-### 在LDA实际学习的过程中（gibbs sampling）*
+### 在LDA实际学习的过程中（gibbs sampling）
 给定一个文本，然后反向去学习most likely topic话题的表示。
 首先，随机给每个word分配到K个话题，
 然后计算两个条件概率：
@@ -51,10 +51,28 @@ assume：【window size】words appearing in the same context(document) are rela
 - ROC curve
 - PCA & SVD （先找到covariance matrix协方差矩阵，再接着PCA）
 
+
+# Boosting & AdaBoost & Gradient Boosting
+
+AdaBoost works by weighting the observations, putting more weight on difficult to classify instances and less on those already handled well. New weak learners are added sequentially that focus their training on the more difficult patterns.
+
+Gradient boosting involves three elements:
+
+A loss function to be optimized.
+A weak learner to make predictions.
+An additive model to add weak learners to minimize the loss function.
+
+Decision trees are used as the weak learner in gradient boosting.
+
+
+
 【update:】
 https://blog.csdn.net/John_xyz/article/details/78884425
 - bagging和boosting的区别 
 我就分别把bagging, Adaboosting, Gradient boosting和gbdt的原理都解释给面试官 
+
+
+
 
 - LSTM的结构
 - L1和L2正则惩罚项公式及区别
