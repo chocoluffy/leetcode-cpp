@@ -1,21 +1,26 @@
 """
 
-Input:
-["a/*comment", "line", "more_comment*/b"]
-Output:
-["a","b"]
-Expected:
+Input: ["a/*comment", "line", "more_comment*/b"] Output: ["a","b"] Expected:
 ["ab"]
 
 
-A good edge case:
-meaning that we only create new empty new_s [], when it's in search mode.
+A good edge case: meaning that we only create new empty new_s [], when it's in
+search mode. since after removing several lines, for the next line, if we have
+some char remained, we need to append it to the previous string output instead
+of a new string.
+
+Some good coding practice review:
+- when we need to examine two char to match a pattern. how to handle that in
+  for\while loop, especially, how we handle the last char.
+
+> use more slicing operation! instead of index accessing operation to avoid the
+> boundary checking.
+
 """
 class Solution(object):
     def removeComments(self, source):
         """
-        :type source: List[str] 
-        :rtype: List[str]
+        :type source: List[str] :rtype: List[str]
         """
         res = []
         mode = 0 # 0: search mode, 1: delete mode.
@@ -24,30 +29,20 @@ class Solution(object):
             if mode == 0:
                 new_s = []  
             i = 0
-            stop = False
-            while i < n-1: # mind the last char.
-                if s[i] == '/' and s[i+1] == '/' and mode == 0:
-                    res.append("".join(new_s))
-                    stop = True
+            while i < n:
+                if s[i:i+2] == '//' and mode == 0: # search mode
                     break
-                elif s[i] == '/' and s[i+1] == '*' and mode == 0:
-                    # switch to delete mode.
+                elif s[i:i+2] == '/*' and mode == 0:
                     mode = 1
-                    i += 1
-                elif s[i] == '*' and s[i+1] == '/' and mode == 1:
-                    # switch to search mode.
+                    i += 1 # avoid edge case like '/*/'
+                elif s[i:i+2] == '*/' and mode == 1:
                     mode = 0
-                    i += 2
-                else: # other cases. 
-                    if mode == 0:
-                        new_s.append(s[i])
                     i += 1
-            if i == n-1 and mode == 0 and not stop:
-                new_s.append(s[i])
-            if not stop:
-                string = "".join(new_s)
-                if len(string) > 0:
-                    res.append(string)
+                elif mode == 0:
+                    new_s.append(s[i])
+                i += 1
+            if mode == 0 and len(new_s) > 0:
+                res.append("".join(new_s))
         return res
 
 
