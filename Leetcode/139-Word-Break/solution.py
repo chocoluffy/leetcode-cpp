@@ -43,7 +43,7 @@ class Solution(object):
 
     # dp v2. use word dict to match, instead of using j to iterate.
     # because, assume that `s[j:i] in wordDict` is expensive.
-    # 63.42%
+    # 96.25%
     def wordBreak_v3(self, s, wordDict):
         """
         :type s: str :type wordDict: List[str] :rtype: bool
@@ -56,6 +56,7 @@ class Solution(object):
                 w_len = len(w)
                 if i - w_len >= 0 and dp[i - w_len] and s[i - w_len:i] == w:
                     dp[i] = True
+                    break
         # print dp
         return dp[n]
 
