@@ -45,8 +45,17 @@ def evaluateActions(actions):
                 print n, 'and', score_set[cnt]
                 support_map[score_set[cnt]][1] = '[dead]'
                 score_set[cnt] = n # replace
-    print support_map
-    print loc_map
+    #print support_map
+    #print loc_map
+
+    res = []
+    for k, v in support_map.iteritems():
+        data = [k, v[1]]
+        res.append(data)
+
+    sorted(res, key = lambda x:x[0])
+    for i in res:
+        print i[0], i[1]
 
 actions = [
     "A Munich Support B",
