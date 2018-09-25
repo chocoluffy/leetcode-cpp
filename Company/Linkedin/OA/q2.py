@@ -1,5 +1,7 @@
 """
 和头条OA最后一道题很像，但是头条是单向的，Linkedin这道题是双向的。
+
+python对于这一类题特别容易runtime error!ß
 """
 def zombieCluster(zombies):
     grid = []

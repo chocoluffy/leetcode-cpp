@@ -28,7 +28,6 @@ class Solution(object):
         return s2[target_index - max_len:target_index]
 
     # use dp.
-
     def longestPalindrome(self, s):
         if len(s) == 0:
             return ""
