@@ -3,6 +3,13 @@ usually we need to set base case.
 like for dp in strings, the base case is usually empty string. 
 thus we enlarge the usual dp table by increasing the height and width by 1.
 but when we iterate the table, and refer to the original string, we need to reduce the index by 1 to match with original string index.
+还是看情况的，主要依据是根据dp里和occurrence的联系来判断的，dp[i]如果和dp[i-1]等相关，则往往是在前面添加padding。如果dp[i]和dp[i+1]相关，则在后面添加padding。
+
+## dp table里index的含义
+搞清楚index i，dp[i]表示的是，从开始到包含i这个位置的元素[:i+1]，还是直到i这个位置之前[:i]，还是指从后开始的。
+
+经典例子：LC139 word break。
+采用dp[i]：因为base case当字符串为""时，应当是true，则dp[i]表示的是，当i位置之前的字符串是否满足题意。因此需要在结尾多pad一位，并最终返回的是dp[n]。
 
 ## hard DP intuition
 
@@ -18,6 +25,18 @@ LC64.Minimum Path Sum，在一个矩阵中找到从左上到右下的最短距�
 
 LC312.Burst Balloon，扎破气球的时候获得积分来自自己和自己的邻居。求扎完全部气球的时候的最大积分。
 如果正向思考会发现，选取扎破这个气球的到的当前最大积分很可能不是最优解，会被其他选择的未来所更新。因此考虑逆向思考！由于是一个个扎破气球，最后的情况是只剩下边缘。于是开始从两个boundary开始往中间添加气球，这个操作会是正向思考问题时候的最后一步。然后再考虑往哪一边继续添加气球。特别注意算法的实现方式，利用了一个window size不断expand的思路，可视化之后是一个矩形从中间往边缘扩散的模型。
+
+- 中心边缘扩散类
+
+总结一下这一类型叫做中心往边缘扩散类型。特别适用于一种情况下的动态规划：每个问题和其周围边缘的子问题相关。转换为子问题的方式是向四周扩散或者向中心缩小。同样很直观的是，其在矩形里的遍历规律是，先把对角线位置的补齐，然后从对角线往边缘遍历。
+
+典型例子：LC312 Burst Ballon; LC5 Longest Palindrome; Matrix Chain Multiplication.
+典型解法：
+```python
+for window in range(1, n):
+	for i in range(0, n-window):
+    	right = i + window
+```
 
 
 - 动态式

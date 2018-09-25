@@ -165,7 +165,9 @@ Q: given an array of element, return another array of same size, where each elem
 找到一个base，`next = (prev * base + new_char) % large_prime`，类比构建正数分位。
 
 
-### general tricks
+# General Tricks
+
+- 在python里，当在循环里面需要匹配多个字符的时候，往往需要考虑边界问题，尤其是在循环停止之后漏掉的字符，这个时候多用slicing operation: `s[:i+1]`而不是直接用index ref这种： `s[i+1]`，因为slicing operation可以避免index overflow的问题。
 
 - 大数相加、相乘时注意overflow的问题，在cpp和java里会出现，在python里不会。
 
