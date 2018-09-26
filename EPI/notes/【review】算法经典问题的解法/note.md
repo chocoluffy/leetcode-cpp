@@ -64,6 +64,59 @@ pop直到结构内元素单调然后push。
 
 # Algorithm
 
+### union find
+```python
+"""
+最简单的版本
+"""
+# a parent array of N, record each position's root parent index. 
+# if two points's root equals, then they are in same group.
+def find(parent, idx):
+	if parent[idx] == -1:
+    	return idx
+    return find(parent, parent[idx])
+
+# 最简单的版本
+# mark these two points as from same parent, by finding each one's and compare.
+def union(parent, x, y):
+	root_x = find(parent, x)
+    root_y = find(parent, y)
+    if root_x != root_y:
+    	parent[x] = root_y
+        
+"""
+优化后的版本
+"""
+class Node(object):
+	def __init__(self):
+    	self.parent = 0 # record parent node's index.
+        self.rank = 0 # record current tree's rank, rooted at current node.
+
+# 路径压缩版本：path-compression version.
+# 每一次find的时候，都把自己的parent设为当前找到的parent。来避免worst case: O(n) 的 find time complexity。
+# 设置parent[0] = 0 为总的根, 于是所有level为1的点，parent值都为0。
+def find(parent, idx):
+	while parent[idx] != idx:
+    	parent[idx] = find(parent, parent[idx])
+    return parent[idx]
+    
+# 最小树版本。
+# 避免在随意合并的时候形成的worst case: O(n)的linked list形状，best case：balanced tree. 
+# 让小rank的树append到大rank的树下，也就是设置小rank的parent
+def union(parent, x, y):
+	root_x = find(parent, x)
+    root_y = find(parent, y)
+    if root_x > root_y:
+    	parent[y] = root_x
+    elif root_x < root_y:
+    	parent[x] = root_y
+    else:
+    	parent[x] = root_y
+        root_y.rank += 1
+```
+在优化之后，查找find的first time worst case：O(logn)， 因为有path compression，之后所有的find操作都为常数，因此 amortized time complexity为O(1)。如果没有优化，worst case: O(n)。
+
+
 ### partition algorithm(in quicksort)
 保持数组部分有序的方式，找到一个pivot，根据这个pivot对这个数组重新arrange之后保证pivot左边数字都比它小，而右边数字都比它大。T：O(n), S: O(1)。
 ```python

@@ -11,6 +11,8 @@ for i in range(n):
             ...
         count += 1
 
+union find version:
+
 """
 # DFS version.
 class Solution(object):
