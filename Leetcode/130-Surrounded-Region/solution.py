@@ -1,4 +1,5 @@
 class Solution(object):
+    # DFS version.
     def solve(self, board):
         """
         :type board: List[List[str]]
@@ -32,6 +33,10 @@ class Solution(object):
                         board[i][j] = 'O'
                     elif board[i][j] == 'O':
                         board[i][j] = 'X'
+    
+    # union find version.
+    def solve_v2(self, board):
+
 
 board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
 Solution().solve(board)
